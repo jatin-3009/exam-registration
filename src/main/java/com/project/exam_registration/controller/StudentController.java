@@ -27,8 +27,8 @@ public class StudentController {
     }
 
     @PostMapping(STUDENT_API_ENDPOINT)
-    public ResponseEntity<String> createStudent(@Valid @RequestBody CreateStudentRequestDto createStudentRequestDto) {
-        String id = studentService.createStudent(createStudentRequestDto);
+    public ResponseEntity<Long> createStudent(@Valid @RequestBody CreateStudentRequestDto createStudentRequestDto) {
+        Long id = studentService.createStudent(createStudentRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
@@ -40,7 +40,7 @@ public class StudentController {
 
     @DeleteMapping(STUDENT_API_ENDPOINT + "/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable("id") String id) {
-        studentService.deleteStudent(id);
+        studentService.deleteStudent(Long.parseLong(id));
         return ResponseEntity.noContent().build();
     }
 }
