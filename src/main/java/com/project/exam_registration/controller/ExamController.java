@@ -1,6 +1,7 @@
 package com.project.exam_registration.controller;
 
 import com.project.exam_registration.dto.CreateExamRequestDto;
+import com.project.exam_registration.dto.RegisterStudentForExamDto;
 import com.project.exam_registration.dto.UpdateExamRequestDto;
 import com.project.exam_registration.entity.Exam;
 import com.project.exam_registration.service.ExamService;
@@ -27,8 +28,8 @@ public class ExamController {
     }
 
     @PostMapping(EXAM_API_ENDPOINT)
-    public ResponseEntity<String> createExam(@Valid @RequestBody CreateExamRequestDto createExamRequestDto) {
-        String id = examService.createExam(createExamRequestDto);
+    public ResponseEntity<Long> createExam(@Valid @RequestBody CreateExamRequestDto createExamRequestDto) {
+        Long id = examService.createExam(createExamRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
@@ -42,5 +43,11 @@ public class ExamController {
     public ResponseEntity<String> deleteExam(@PathVariable("id") String id) {
         examService.deleteExam(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(EXAM_API_ENDPOINT + "/register")
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterStudentForExamDto registerStudentForExamDto) {
+        examService.register(registerStudentForExamDto);
+        return ResponseEntity.ok().build();
     }
 }
