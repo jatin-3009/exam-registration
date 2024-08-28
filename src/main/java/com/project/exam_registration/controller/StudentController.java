@@ -40,7 +40,7 @@ public class StudentController {
 
     @DeleteMapping(STUDENT_API_ENDPOINT + "/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable("id") String id) {
-        studentService.deleteStudent(Long.parseLong(id));
+        studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
 }
