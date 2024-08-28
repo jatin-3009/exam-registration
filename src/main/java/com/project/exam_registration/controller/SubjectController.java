@@ -1,6 +1,7 @@
 package com.project.exam_registration.controller;
 
 import com.project.exam_registration.dto.CreateSubjectRequestDto;
+import com.project.exam_registration.dto.EnrollStudentInSubjectDto;
 import com.project.exam_registration.dto.UpdateSubjectRequestDto;
 import com.project.exam_registration.entity.Subject;
 import com.project.exam_registration.service.SubjectService;
@@ -27,8 +28,8 @@ public class SubjectController {
     }
 
     @PostMapping(SUBJECT_API_ENDPOINT)
-    public ResponseEntity<String> createSubject(@Valid @RequestBody CreateSubjectRequestDto createSubjectRequestDto) {
-        String id = subjectService.createSubject(createSubjectRequestDto);
+    public ResponseEntity<Long> createSubject(@Valid @RequestBody CreateSubjectRequestDto createSubjectRequestDto) {
+        Long id = subjectService.createSubject(createSubjectRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
@@ -42,5 +43,11 @@ public class SubjectController {
     public ResponseEntity<String> deleteSubject(@PathVariable("id") String id) {
         subjectService.deleteSubject(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(SUBJECT_API_ENDPOINT + "/enroll")
+    public ResponseEntity<String> enroll(@Valid @RequestBody EnrollStudentInSubjectDto enrollStudentInSubjectDto) {
+        subjectService.enroll(enrollStudentInSubjectDto);
+        return ResponseEntity.ok().build();
     }
 }
