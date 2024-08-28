@@ -4,12 +4,13 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @Data
 @RequiredArgsConstructor
-public class CreateSubjectRequestDto {
-    @NotBlank(message = "Name cannot be blank")
-    private String name;
-    private List<Long> studentIds;
+public class RegisterStudentForExamDto {
+    @NotBlank
+    private Long studentId;
+    @NotBlank
+    private Long examId;
+    @NotBlank
+    private Long subjectId;
 }
