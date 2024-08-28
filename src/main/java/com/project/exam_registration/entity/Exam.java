@@ -19,6 +19,6 @@ public class Exam {
     @OneToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
-    @ManyToMany(mappedBy = "exams")
+    @ManyToMany(mappedBy = "exams", cascade = CascadeType.ALL)
     private List<Student> students;
 }

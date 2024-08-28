@@ -17,6 +17,6 @@ public class Subject {
     @GeneratedValue
     private Long id;
     private String name;
-    @ManyToMany(mappedBy = "subjects")
+    @ManyToMany(mappedBy = "subjects", cascade = CascadeType.ALL)
     private List<Student> students;
 }
